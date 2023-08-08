@@ -7,12 +7,7 @@ router.post('/', async (req, res) => {
   try {
     const { userId, type, imageUrl } = req.body;
 
-    // Create the clothing item in the database
-    const newClothingItem = await ClothingItem.createClothingItem(
-      userId,
-      type,
-      imageUrl
-    );
+    const newClothingItem = await ClothingItem.createClothingItem(userId, type, imageUrl);
 
     res.json(newClothingItem);
   } catch (error) {
@@ -21,6 +16,63 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Add more clothing item-related API endpoints (e.g., get all clothing items, delete clothing item, etc.)
+// Fetch All Clothing Items for a User
+router.get('/:userId', async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const clothingItems = await ClothingItem.getClothingItems(userId);
+
+    res.json(clothingItems);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Fetch Single Clothing Item by ID
+router.get('/item/:itemId', async (req, res) => {
+  try {
+    const itemId = req.params.itemId;
+    const clothingItem = await ClothingItem.getClothingItemById(itemId);
+
+    if (!clothingItem) {
+      return res.status(404).json({ error: 'Clothing item not found' });
+    }
+
+    res.json(clothingItem);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Update Clothing Item by ID
+router.put('/item/:itemId', async (req, res) => {
+  try {
+    const itemId = req.params.itemId;
+    const { type, imageUrl } = req.body;
+
+    const updatedClothingItem = await ClothingItem.updateClothingItem(itemId, type, imageUrl);
+
+    res.json(updatedClothingItem);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// Delete Clothing Item by ID
+router.delete('/item/:itemId', async (req, res) => {
+  try {
+    const itemId = req.params.itemId;
+
+    await ClothingItem.deleteClothingItem(itemId);
+
+    res.json({ message: 'Clothing item deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 
 module.exports = router;
