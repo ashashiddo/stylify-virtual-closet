@@ -1,83 +1,47 @@
-const express = require('express');
-const router = express.Router();
-const User = require('../models/User');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const pool = require('../db');
 
-// User Registration
-router.post('/register', async (req, res) => {
-  try {
-    const { username, email, password } = req.body;
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = await User.createUser(username, email, hashedPassword);
-
-    const token = jwt.sign({ user_id: newUser.id }, 'your-secret-key');
-
-    res.json({ token });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Server error' });
-  }
-});
-
-// User Login
-router.post('/login', async (req, res) => {
-  try {
-    const { email, password } = req.body;
-
-    const user = await User.findUserByEmail(email);
-
-    if (!user) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+class UserController {
+  static async createUser(username, email, password) {
+    try {
+      const newUser = await pool.query(
+        'INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *',
+        [username, email, password]
+      );
+      return newUser.rows[0];
+    } catch (error) {
+      throw new Error('Error creating user');
     }
+  }
 
-    const passwordMatch = await bcrypt.compare(password, user.password);
-
-    if (!passwordMatch) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+  static async findUserById(user_id) {
+    try {
+      const user = await pool.query('SELECT * FROM users WHERE user_id = $1', [user_id]);
+      return user.rows[0];
+    } catch (error) {
+      throw new Error('Error fetching user');
     }
-
-    const token = jwt.sign({ user_id: user.id }, 'your-secret-key');
-
-    res.json({ token });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Server error' });
   }
-});
 
-// Fetch User Profile
-router.get('/profile/:user_id', async (req, res) => {
-  try {
-    const user_id = req.params.user_id;
-    const user = await User.findUserById(user_id);
-
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+  static async findUserByEmail(email) {
+    try {
+      const user = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+      return user.rows[0];
+    } catch (error) {
+      throw new Error('Error fetching user by email');
     }
-
-    res.json(user);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Server error' });
   }
-});
 
-// Update User Profile
-router.put('/profile/:user_id', async (req, res) => {
-  try {
-    const user_id = req.params.user_id;
-    const { username, email } = req.body;
-
-    const updatedUser = await User.updateUserProfile(user_id, username, email);
-
-    res.json(updatedUser);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Server error' });
+  static async updateUserProfile(user_id, username, email) {
+    try {
+      const updatedUser = await pool.query(
+        'UPDATE users SET username = $1, email = $2 WHERE user_id = $3 RETURNING *',
+        [username, email, user_id]
+      );
+      return updatedUser.rows[0];
+    } catch (error) {
+      throw new Error('Error updating user profile');
+    }
   }
-});
+}
 
-module.exports = router;
+module.exports = UserController;

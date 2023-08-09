@@ -1,6 +1,6 @@
 const pool = require('../db');
 
-class User {
+class UserModel {
   static async createUser(username, email, password) {
     try {
       const newUser = await pool.query(
@@ -13,9 +13,9 @@ class User {
     }
   }
 
-  static async findUserById(userId) {
+  static async findUserById(user_id) {
     try {
-      const user = await pool.query('SELECT * FROM users WHERE id = $1', [userId]);
+      const user = await pool.query('SELECT * FROM users WHERE user_id = $1', [user_id]);
       return user.rows[0];
     } catch (error) {
       throw new Error('Error fetching user');
@@ -34,7 +34,7 @@ class User {
   static async updateUserProfile(user_id, username, email) {
     try {
       const updatedUser = await pool.query(
-        'UPDATE users SET username = $1, email = $2 WHERE id = $3 RETURNING *',
+        'UPDATE users SET username = $1, email = $2 WHERE user_id = $3 RETURNING *',
         [username, email, user_id]
       );
       return updatedUser.rows[0];
@@ -44,4 +44,4 @@ class User {
   }
 }
 
-module.exports = User;
+module.exports = UserModel;
