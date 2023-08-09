@@ -1,11 +1,11 @@
 const pool = require('../db');
 
 class ClothingItem {
-  static async createClothingItem(userId, type, imageUrl) {
+  static async createClothingItem(user_id, image_url, name, description, category_id) {
     try {
       const newClothingItem = await pool.query(
-        'INSERT INTO clothing_items (user_id, type, image_url) VALUES ($1, $2, $3) RETURNING *',
-        [userId, type, imageUrl]
+        'INSERT INTO Clothing (user_id, image_url, name, description, category_id) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+        [user_id, image_url, name, description, category_id]
       );
       return newClothingItem.rows[0];
     } catch (error) {
@@ -13,11 +13,11 @@ class ClothingItem {
     }
   }
 
-  static async getClothingItems(userId) {
+  static async getClothingItemsByUser(user_id) {
     try {
       const clothingItems = await pool.query(
-        'SELECT * FROM clothing_items WHERE user_id = $1',
-        [userId]
+        'SELECT * FROM Clothing WHERE user_id = $1',
+        [user_id]
       );
       return clothingItems.rows;
     } catch (error) {
@@ -25,11 +25,11 @@ class ClothingItem {
     }
   }
 
-  static async getClothingItemById(itemId) {
+  static async getClothingItemById(clothing_id) {
     try {
       const clothingItem = await pool.query(
-        'SELECT * FROM clothing_items WHERE id = $1',
-        [itemId]
+        'SELECT * FROM Clothing WHERE clothing_id = $1',
+        [clothing_id]
       );
       return clothingItem.rows[0];
     } catch (error) {
@@ -37,11 +37,11 @@ class ClothingItem {
     }
   }
 
-  static async updateClothingItem(itemId, type, imageUrl) {
+  static async updateClothingItem(clothing_id, image_url, name, description, category_id) {
     try {
       const updatedClothingItem = await pool.query(
-        'UPDATE clothing_items SET type = $1, image_url = $2 WHERE id = $3 RETURNING *',
-        [type, imageUrl, itemId]
+        'UPDATE Clothing SET image_url = $1, name = $2, description = $3, category_id = $4 WHERE clothing_id = $5 RETURNING *',
+        [image_url, name, description, category_id, clothing_id]
       );
       return updatedClothingItem.rows[0];
     } catch (error) {
@@ -49,9 +49,9 @@ class ClothingItem {
     }
   }
 
-  static async deleteClothingItem(itemId) {
+  static async deleteClothingItem(clothing_id) {
     try {
-      await pool.query('DELETE FROM clothing_items WHERE id = $1', [itemId]);
+      await pool.query('DELETE FROM Clothing WHERE clothing_id = $1', [clothing_id]);
     } catch (error) {
       throw new Error('Error deleting clothing item');
     }

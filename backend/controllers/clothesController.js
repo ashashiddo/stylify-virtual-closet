@@ -5,9 +5,9 @@ const ClothingItem = require('../models/ClothingItem');
 // Create a New Clothing Item
 router.post('/', async (req, res) => {
   try {
-    const { userId, type, imageUrl } = req.body;
+    const { user_id, type, imageUrl } = req.body;
 
-    const newClothingItem = await ClothingItem.createClothingItem(userId, type, imageUrl);
+    const newClothingItem = await ClothingItem.createClothingItem(user_id, type, imageUrl);
 
     res.json(newClothingItem);
   } catch (error) {
@@ -17,10 +17,10 @@ router.post('/', async (req, res) => {
 });
 
 // Fetch All Clothing Items for a User
-router.get('/:userId', async (req, res) => {
+router.get('/:user_id', async (req, res) => {
   try {
-    const userId = req.params.userId;
-    const clothingItems = await ClothingItem.getClothingItems(userId);
+    const user_id = req.params.user_id;
+    const clothingItems = await ClothingItem.getClothingItems(user_id);
 
     res.json(clothingItems);
   } catch (error) {

@@ -13,7 +13,7 @@ router.post('/register', async (req, res) => {
 
     const newUser = await User.createUser(username, email, hashedPassword);
 
-    const token = jwt.sign({ userId: newUser.id }, 'your-secret-key');
+    const token = jwt.sign({ user_id: newUser.id }, 'your-secret-key');
 
     res.json({ token });
   } catch (error) {
@@ -39,7 +39,7 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    const token = jwt.sign({ userId: user.id }, 'your-secret-key');
+    const token = jwt.sign({ user_id: user.id }, 'your-secret-key');
 
     res.json({ token });
   } catch (error) {
@@ -49,10 +49,10 @@ router.post('/login', async (req, res) => {
 });
 
 // Fetch User Profile
-router.get('/profile/:userId', async (req, res) => {
+router.get('/profile/:user_id', async (req, res) => {
   try {
-    const userId = req.params.userId;
-    const user = await User.findUserById(userId);
+    const user_id = req.params.user_id;
+    const user = await User.findUserById(user_id);
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
@@ -66,12 +66,12 @@ router.get('/profile/:userId', async (req, res) => {
 });
 
 // Update User Profile
-router.put('/profile/:userId', async (req, res) => {
+router.put('/profile/:user_id', async (req, res) => {
   try {
-    const userId = req.params.userId;
+    const user_id = req.params.user_id;
     const { username, email } = req.body;
 
-    const updatedUser = await User.updateUserProfile(userId, username, email);
+    const updatedUser = await User.updateUserProfile(user_id, username, email);
 
     res.json(updatedUser);
   } catch (error) {

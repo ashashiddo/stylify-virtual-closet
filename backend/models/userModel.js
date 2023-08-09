@@ -31,11 +31,11 @@ class User {
     }
   }
 
-  static async updateUserProfile(userId, username, email) {
+  static async updateUserProfile(user_id, username, email) {
     try {
       const updatedUser = await pool.query(
         'UPDATE users SET username = $1, email = $2 WHERE id = $3 RETURNING *',
-        [username, email, userId]
+        [username, email, user_id]
       );
       return updatedUser.rows[0];
     } catch (error) {
