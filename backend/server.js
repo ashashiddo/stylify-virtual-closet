@@ -1,26 +1,29 @@
-const express = require('express');
-const cors = require('cors');
-const app = express();
-const PORT = process.env.PORT || 8080;
+require("dotenv").config()
+const express = require("express")
+const app = express()
 
-// Middleware
-app.use(express.json());
-app.use(cors());
+const {connectDB, pool} = require("./db/database")
 
-// Routes
-const usersRoutes = require('./routes/userRoutes');
-const clothesRoutes = require('./routes/clothingRoutes');
+// routes 
+// const userRouter = require("./routes/users")
 
-app.use('/api/users', usersRoutes);
-app.use('/api/clothes', clothesRoutes);
+app.use(express.json())
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Server Error');
-});
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+
+app.get("/", (req, res) => {
+  res.send("Hello world")
+})
+
+// app.use("/api/v1/users", userRouter)  
+
+const startApp = async () => {
+  try {
+    await connectDB()
+    app.listen(process.env.PORT, console.log(`App started on PORT ${process.env.PORT}`))
+  } catch (err) {
+    console.log("an error occured", err)
+  }
+}
+
+startApp()

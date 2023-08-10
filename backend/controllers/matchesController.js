@@ -1,4 +1,4 @@
-const pool = require('../db');
+const pool = require('../db/database');
 
 class MatchesController {
   static async createMatch(user_id, clothing_id) {
@@ -13,7 +13,18 @@ class MatchesController {
     }
   }
 
+
   // Add other methods for handling matches here
+  async getUserMatches (user_id){
+    const userMatches = await pool.query (
+        `SELECT * FROM matches WHERE user_id = $1;`, 
+        [user_id]
+    )
+return userMatches.rows[0]
+//return array of objects that has that user_id //will hapen in frontend 
+new Set {userMatches.map(match => match.randomString) // will return a list of random strings 
+  }
 }
+//have req and res here 
 
 module.exports = MatchesController;
