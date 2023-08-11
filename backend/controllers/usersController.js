@@ -1,7 +1,6 @@
-const pool = require('../db');
+const pool = require('../db/database');
 
-class UserController {
-  static async createUser(username, email, password) {
+ const createUser = async (req, res) => {
     try {
       const newUser = await pool.query(
         'INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *',
@@ -11,27 +10,27 @@ class UserController {
     } catch (error) {
       throw new Error('Error creating user');
     }
-  }
+  };
 
-  static async findUserById(user_id) {
+  const findUserById = async (req, res) => {
     try {
       const user = await pool.query('SELECT * FROM users WHERE user_id = $1', [user_id]);
       return user.rows[0];
     } catch (error) {
       throw new Error('Error fetching user');
     }
-  }
+  }; 
 
-  static async findUserByEmail(email) {
+  const findUserByEmail = async (req, res) => {
     try {
       const user = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
       return user.rows[0];
     } catch (error) {
       throw new Error('Error fetching user by email');
     }
-  }
+  };
 
-  static async updateUserProfile(user_id, username, email) {
+  const updateUserProfile = async (req, res) => {
     try {
       const updatedUser = await pool.query(
         'UPDATE users SET username = $1, email = $2 WHERE user_id = $3 RETURNING *',
@@ -41,7 +40,13 @@ class UserController {
     } catch (error) {
       throw new Error('Error updating user profile');
     }
-  }
-}
+  };
 
-module.exports = UserController;
+
+module.exports = {
+    createUser,
+    findUserById,
+    findUserByEmail, 
+    updateUserProfile
+
+};

@@ -1,7 +1,6 @@
 const ClothingItem = require('../models/ClothingItem');
 
-class ClothesController {
-  static async createClothingItem(req, res) {
+const createClothingItem = async (req, res) => {
     try {
       const { user_id, type, imageUrl } = req.body;
       const newClothingItem = await ClothingItem.createClothingItem(user_id, type, imageUrl);
@@ -10,9 +9,8 @@ class ClothesController {
       console.error(error);
       res.status(500).json({ error: 'Server error' });
     }
-  }
-
-  static async getClothingItems(req, res) {
+  };
+  const getClothingItems = async (req, res) => {
     try {
       const user_id = req.params.user_id;
       const clothingItems = await ClothingItem.getClothingItems(user_id);
@@ -21,9 +19,9 @@ class ClothesController {
       console.error(error);
       res.status(500).json({ error: 'Server error' });
     }
-  }
+  };
 
-  static async getClothingItemById(req, res) {
+  const getClothingItemById = async (req, res) => {
     try {
       const itemId = req.params.itemId;
       const clothingItem = await ClothingItem.getClothingItemById(itemId);
@@ -37,9 +35,9 @@ class ClothesController {
       console.error(error);
       res.status(500).json({ error: 'Server error' });
     }
-  }
+  }; 
 
-  static async updateClothingItem(req, res) {
+  const updateClothingItem = async (req, res) => {
     try {
       const itemId = req.params.itemId;
       const { type, imageUrl } = req.body;
@@ -51,9 +49,9 @@ class ClothesController {
       console.error(error);
       res.status(500).json({ error: 'Server error' });
     }
-  }
+  };
 
-  static async deleteClothingItem(req, res) {
+  const deleteClothingItem = async (req, res) => {
     try {
       const itemId = req.params.itemId;
       await ClothingItem.deleteClothingItem(itemId);
@@ -62,7 +60,15 @@ class ClothesController {
       console.error(error);
       res.status(500).json({ error: 'Server error' });
     }
-  }
-}
+  };
 
-module.exports = ClothesController;
+module.exports = {
+    createClothingItem,
+    getClothingItems,
+    getClothingItemById,
+    updateClothingItem,
+    deleteClothingItem
+};
+
+
+

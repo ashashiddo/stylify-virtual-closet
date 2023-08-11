@@ -1,2 +1,3 @@
-INSERT INTO Categories (category_id, name)
-VALUES (1, 'Tops'), (2, 'Bottoms'), (3, 'Shoes');
+INSERT INTO categories (name)
+VALUES ('Tops'), ('Pants'), ('Jackets'), ('Shoes'), 
+('Dresses'), ('Accessories');
