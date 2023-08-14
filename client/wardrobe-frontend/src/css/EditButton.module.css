@@ -1,0 +1,26 @@
+.editForm {
+  margin: 0.3rem;
+}
+.editForm label, .editForm input {
+  margin: 0.2rem 0;
+  font-size: 1rem;
+  display: block;
+  width: 100%;
+
+}
+.editForm input {
+  border-radius: 5px;
+  border: 1px solid #7f8084;
+}
+
+@media only screen and (min-width: 780px){
+  .editForm {
+    margin-top: 1rem;
+  }
+  .editForm label, .editForm input {
+    margin: 0.3rem 0;
+    font-size: 1.1rem;
+    display: block;
+    width: 50%;
+  }
+}

@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Noto+Serif:wght@400;700&display=swap');
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans JP', sans-serif;
+  background-color: #afb2b7;
+}
+h1, h2 {
+  text-align: center;
+  font-family: 'Noto Serif', serif;
+  font-weight: 700;
+}
+h1 {
+  margin: 3rem;
+}
+h3 {
+  text-align: center;
+}
+button {
+  padding: 0.8rem 0.8rem;
+  margin: 1rem;
+  border-radius: 5px;
+  border: none;
+
+  background-color: #ffa755;
+  color: #262526;
+
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+button:hover{
+  background-color:  #7f8084;
+  color: #f3f3f3;
+}
+.App {
+  background-color: #f3f3f3;
+  color: #262526;
+  margin: 1rem 0.5rem;
+  min-height: 95vh;
+  border-radius: 10px;
+  padding-bottom: 0.5rem;
+  box-shadow: 10px 5px 20px 10px #7f8084;
+}
+.home h1 {
+  text-transform: uppercase;
+}
+
+@media only screen and (min-width:1140px) {
+  .App {
+    max-width: 1100px;
+    margin: 2rem auto;
+  }
+  button {
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+
+
+/* #262526 black
+#7f8084
+#afb2b7
+#d7d8da
+#f3f3f3 white
+#ffa755 orange */

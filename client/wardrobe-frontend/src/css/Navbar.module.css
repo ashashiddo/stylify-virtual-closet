@@ -1,0 +1,39 @@
+/* #262526 black
+#7f8084
+#afb2b7
+#d7d8da
+#f3f3f3 white
+#ffa755 orange */
+
+.navbar {
+  border-radius: 10px 10px 0 0;
+  background-color: #262526;
+  text-align: center;
+  padding: 1.4rem;
+}
+.linkContainer {
+  margin: 0 auto;
+  max-width: 80%;
+  display:flex;
+  justify-content: space-around;
+}
+.navbar a {
+  color: #f3f3f3;
+  font-size: 1.3rem;
+  padding: 0.5rem;
+  /* margin-right: 2rem; */
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.navbar a:hover {
+  color: #ffa755;
+}
+
+@media only screen and (min-width: 550px){
+  .linkContainer {
+    justify-content: center;
+  }
+  .navbar a {
+    margin-right: 2rem;
+  }
+}

@@ -1,0 +1,69 @@
+.shelf {
+  border-radius: 0 0 5px 5px;
+  background-color: #afb2b7;
+  padding: 0.5rem 0.2rem;
+  margin: 0;
+  color: #000;
+}
+.wardrobeItem {
+  background-color: #d7d8da;
+  margin: 0.5rem;
+  padding: 0.2rem;
+  border-radius: 5px;
+}
+.itemContent {
+  padding: 0 0.5rem;
+}
+.itemDesc {
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+.itemDetails {
+  font-weight: 300;
+  display: flex;
+  justify-content: space-between;
+}
+.itemButtons {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+}
+.itemButtons button{
+  background-color:  #7f8084;
+  color: #f3f3f3;
+  margin: 0.5rem 0;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0.4rem 0.8rem;
+}
+.itemButtons button:hover{
+  background-color: #ffa755;
+  color: #262526;
+}
+.itemButtons .editButton {
+  flex-basis: 80%;
+}
+@media only screen and (min-width: 767px){
+  .shelf {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+@media only screen and (min-width: 1140px){
+  .shelf {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+}
+
+/* #262526 black
+#7f8084
+#afb2b7
+#d7d8da
+#f3f3f3 white
+#ffa755 orange */

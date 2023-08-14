@@ -1,0 +1,29 @@
+#262526 black
+#7f8084
+#afb2b7
+#d7d8da
+#f3f3f3 white
+
+
+
+
+//
+#f1f1f1 white
+#d4d9dd
+#bbb6b6
+#424246
+#212121 black
+
+
+/* Colors
+Name: Cool Black
+Hex: #062E60
+Name: Dark Cerulean
+Hex: #07437D
+Name: Lapis Lazuli
+Hex: #215D98
+Name: Steel Blue
+Hex: #3973AB
+CERULEAN FROST
+Hex: #6D9BC5
+*/

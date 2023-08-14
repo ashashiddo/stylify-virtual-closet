@@ -1,0 +1,22 @@
+.itemForm form {
+  margin-top: 2rem;
+}
+.itemForm form > div {
+  margin: 1.8rem 0;
+}
+.itemForm input {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  background-color: #ddd;
+  color: #262526;
+  font-size: 1.3rem;
+  border-radius: 5px;
+  border: 1px solid #7f8084;
+  width: 50%;
+}
+.itemForm input:focus {
+  outline-color: #262526;
+}
+.itemForm label {
+  font-size: 1.4rem;
+}
