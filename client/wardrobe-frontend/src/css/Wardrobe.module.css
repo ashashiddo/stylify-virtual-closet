@@ -44,7 +44,7 @@
 }
 .active {
   background-color: #ffa755 !important;
-  box-shadow: -5px 2px 8px #7f8084;
+  box-shadow: -5px 2px 8px #000000;
   border: 2px solid #262526;
   border-right: none;
 }
