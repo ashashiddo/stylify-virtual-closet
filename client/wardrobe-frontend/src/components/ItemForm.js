@@ -39,7 +39,7 @@ const ItemForm = ({ typeOfItem }) => {
         id: uuidv4()
       }
       dispatch({type: 'ADD_ITEM', newItem});
-      history.push('/');
+      history.push('/logged_in');
     }
   }
 

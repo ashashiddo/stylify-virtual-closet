@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-const Home = () => {
+const Login = () => {
   const [queryResults, setQueryResults] = useState(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
 
-  useEffect(() => {
-    axios.get("/xyz").then((res) => {
-      console.log("response value is", res);
-      setQueryResults(res.data.test);
-    }).catch((err) => console.log("an error occurred", err));
-  }, []); // Adding an empty dependency array ensures the effect runs only once on component mount
+//   useEffect(() => {
+//     axios.get("http://localhost:8080/abc").then((res) => {
+//       console.log("response value is", res);
+//       setQueryResults(res.data.test);
+//     }).catch((err) => console.log("an error occurred", err));
+//   }, []); // Adding an empty dependency array ensures the effect runs only once on component mount
 
   const handleFormSubmit = () => {
     const payload = {
@@ -20,7 +20,7 @@ const Home = () => {
       lastname: lastName,
       email: email,
     };
-    axios.post("/register_user", { payload })
+    axios.post("http://localhost:8080/register_user", { payload })
       .then((res) => {
         console.log("success got to the backend");
       })
@@ -31,23 +31,10 @@ const Home = () => {
 
   return (
     <>
-      <h1>Welcome to Wardrobe Homepage</h1>
+      <h1>Welcome to Wardrobe App</h1>
       {queryResults && <p>{queryResults}</p>}
       <div>
-        <input
-          onChange={(e) => {
-            setFirstName(e.target.value);
-          }}
-          value={firstName}
-          placeholder="First Name"
-        />
-        <input
-          onChange={(e) => {
-            setLastName(e.target.value);
-          }}
-          value={lastName}
-          placeholder="Last Name"
-        />
+
         <input
           onChange={(e) => {
             setEmail(e.target.value);
@@ -56,10 +43,19 @@ const Home = () => {
           placeholder="Email"
         />
 
-        <button onClick={handleFormSubmit}>Submit</button>
+        <input
+          type="password"
+          onChange={(e) => {
+            setFirstName(e.target.value);
+          }}
+          value={firstName}
+          placeholder="Password"
+        />
+
+        <a href="/logged_in"><button onClick={handleFormSubmit}>Login</button></a>
       </div>
     </>
   );
 };
 
-export default Home;
+export default Login;

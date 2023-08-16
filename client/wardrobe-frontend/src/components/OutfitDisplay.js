@@ -52,7 +52,7 @@ const OutfitDisplay = ({ outfit }) => {
               <div className={styles.itemContainer}>
                 <div className={styles.accessoryImgContainer}>
                   <img src="assets/icons/Clothing-Hat-icon.png" alt="hat icon" />
-                  <img src="assets/icons/Clothing-Scarf-icon.png" alt="scarf icon" />
+                  {/* <img src="assets/icons/Clothing-Scarf-icon.png" alt="scarf icon" /> */}
                 </div>
                 <p>{item.description}</p>
                 <p>{item.color}</p>

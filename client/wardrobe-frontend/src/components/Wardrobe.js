@@ -47,7 +47,7 @@ const Wardrobe = () => {
           <div className={`${styles.tab} ${styles.access} ${itemToShow === 'accessories' ? styles.active : ""}`} onClick={() => setItemToShow('accessories')}>
             <img src="assets/icons/Clothing-Hat-icon.png" alt="hat icon" />
             {/* <img src="assets/icons/Clothing-Mittens-icon.png" alt="mittens icon" /> */}
-            <img src="assets/icons/Clothing-Scarf-icon.png" alt="scarf icon" />
+            {/* <img src="assets/icons/Clothing-Scarf-icon.png" alt="scarf icon" /> */}
           </div>
         </div>
         {itemToShow === 'tShirt' && <div className={`${styles.shelfContainer}`}>
