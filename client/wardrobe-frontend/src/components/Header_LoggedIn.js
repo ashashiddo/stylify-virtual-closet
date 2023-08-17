@@ -31,12 +31,12 @@ export default function HeaderLoggedIn() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="bg-white">
+    <header className="bg-gray-50">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+            <img className="w-auto logo" src="assets/icons/logo.png" alt="" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -50,7 +50,7 @@ export default function HeaderLoggedIn() {
           </button>
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <Popover className="relative">
+          {/* <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
               Product
               <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
@@ -99,7 +99,7 @@ export default function HeaderLoggedIn() {
                 </div>
               </Popover.Panel>
             </Transition>
-          </Popover>
+          </Popover> */}
 
           <a href="/logged_in" className="text-sm font-semibold leading-6 text-gray-900">
           Wardrobe
@@ -108,8 +108,8 @@ export default function HeaderLoggedIn() {
           <a href="/add" className="text-sm font-semibold leading-6 text-gray-900">
             Add Item
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Company
+          <a href="/weather" className="text-sm font-semibold leading-6 text-gray-900">
+          Check Weather
           </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -125,8 +125,8 @@ export default function HeaderLoggedIn() {
             <a href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                className="w-auto logo"
+                src="assets/icons/logo.png"
                 alt=""
               />
             </a>

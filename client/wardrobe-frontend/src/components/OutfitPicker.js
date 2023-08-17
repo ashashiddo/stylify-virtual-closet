@@ -107,6 +107,10 @@ const OutfitPicker = () => {
           <input type="checkbox" id="trousers" name="trousers" value="trousers" onChange={handleChange} />
           <span className={styles.checkmark}></span>
         </label>
+        <label className={styles.checkboxContainer} htmlFor='jacket'>Jackets
+          <input type="checkbox" id="jacket" name="jacket" value="jacket" onChange={handleChange} />
+          <span className={styles.checkmark}></span>
+        </label>
         <label className={styles.checkboxContainer} htmlFor='shorts'>Shorts
           <input type="checkbox" id="shorts" name="shorts" value="shorts" onChange={handleChange} />
           <span className={styles.checkmark}></span>
@@ -120,7 +124,7 @@ const OutfitPicker = () => {
           <span className={styles.checkmark}></span>
         </label>
         <div className={styles.btnContainer}>
-          <button type="sumbit">Get new outfit!</button>
+          <button className="font-semibold leading-6 text-gray-900" type="submit">Get new outfit </button>
         </div>
       </form>
       <div>

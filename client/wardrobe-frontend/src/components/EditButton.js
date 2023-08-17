@@ -10,7 +10,8 @@ const EditButton = ({ item }) => {
   const [editedItem, setEditedItem] = useState({
     color: '',
     brand: '',
-    description: ''
+    description: '',
+    url: ''
   });
 
   const toggleEditForm = () => {
@@ -27,6 +28,10 @@ const EditButton = ({ item }) => {
     setEditedItem({...editedItem, brand: e.target.value});
   }
 
+  const handleURLChange = e => {
+    setEditedItem({...editedItem, url: e.target.value});
+  }
+
   const handleEditSubmit = e => {
     e.preventDefault();
     if(editedItem.description === '') {
@@ -38,12 +43,16 @@ const EditButton = ({ item }) => {
     if(editedItem.brand === '') {
       editedItem.brand = item.brand
     }
+    if(editedItem.url === '') {
+        editedItem.url = item.url
+      }
     console.log(editedItem);
     dispatch({type: 'EDIT_ITEM', editedItem: {
         type: item.type,
         id: item.id,
         color: editedItem.color,
         brand: editedItem.brand,
+        url: editedItem.url,
         description: editedItem.description
     }
     });
@@ -63,6 +72,8 @@ const EditButton = ({ item }) => {
           <input type='text' placeholder={item.color} onChange={handleColorChange}/>
           <label>Brand:</label>
           <input type='text' placeholder={item.brand} onChange={handleBrandChange}/>
+          <label>Url:</label>
+          <input type='text' placeholder={item.url} onChange={handleURLChange}/>
           <button className="item-buttons" type='submit'>Confirm</button>
         </form>)
         : null}
