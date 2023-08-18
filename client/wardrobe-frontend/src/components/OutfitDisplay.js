@@ -3,7 +3,7 @@ import styles from '../css/OutfitDisplay.module.css'
 const OutfitDisplay = ({ outfit }) => {
   return (
     <div className={styles.outfitDisplay}>
-      <p className={styles.headText}>Outfit of the day:</p>
+      <p className="font-semibold p-6 text-white">Outfit of the day</p>
       {outfit.map(item => (
           <div key={item.id}>
             {item.type === 'tShirt' &&
@@ -50,9 +50,9 @@ const OutfitDisplay = ({ outfit }) => {
               </div>}
             {item.type === 'accessory' &&
               <div className={styles.itemContainer}>
-                <div className={styles.accessoryImgContainer}>
+                <div className={styles.imgContainer}>
                   <img src="assets/icons/Clothing-Hat-icon.png" alt="hat icon" />
-                  <img src="assets/icons/Clothing-Scarf-icon.png" alt="scarf icon" />
+                  {/* <img src="assets/icons/Clothing-Scarf-icon.png" alt="scarf icon" /> */}
                 </div>
                 <p>{item.description}</p>
                 <p>{item.color}</p>

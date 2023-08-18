@@ -1,9 +1,10 @@
 .outfitDisplay {
-  background-color: #afb2b7;
-  border-radius: 5px;
-  padding: 0.5rem;
-  margin: 2rem 0.5rem;
-  text-align: left;
+    background-color: #283d70;
+    border-radius: 15px;
+    color: white;
+    padding: 0.5rem;
+    margin: 2rem 0.5rem;
+    text-align: left;
 }
 .headText {
   font-family: 'Noto Serif', serif;
@@ -13,15 +14,17 @@
 }
 
 .itemContainer {
-  background-color: #d7d8da;
-  border-radius: 5px;
-  display: grid;
-  grid-template-columns: 20% 35% 45%;
-  gap: 1rem;
-  align-items: center;
-  justify-content: start;
-  padding: 0.5rem;
-  margin: 0.5rem;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 20% 35% 45%;
+    grid-gap: 1rem;
+    gap: 1rem;
+    align-items: center;
+    justify-content: start;
+    padding: 0.5rem;
+    margin: 0.5rem;
 }
 .imgContainer {
   flex-basis: 40%;

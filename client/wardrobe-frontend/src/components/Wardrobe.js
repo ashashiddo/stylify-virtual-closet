@@ -19,7 +19,7 @@ const Wardrobe = () => {
   const [itemToShow, setItemToShow] = useState('tShirt');
 
   return (
-    <div className={styles.wardrobe}>
+    <div className="text-sm font-semibold leading-6 text-gray-900">
       <h2>Clothes</h2>
       <div className={styles.wardrobeContainer}>
         <div className={styles.tabs}>
@@ -44,10 +44,10 @@ const Wardrobe = () => {
           <div className={`${styles.tab} ${itemToShow === 'shoes' ? styles.active : ""}`} onClick={() => setItemToShow('shoes')}>
             <img src="assets/icons/Shoes-icon.png" alt="shoes icon" />
           </div>
-          <div className={`${styles.tab} ${styles.access} ${itemToShow === 'accessories' ? styles.active : ""}`} onClick={() => setItemToShow('accessories')}>
+          <div className={`${styles.tab} ${itemToShow === 'accessories' ? styles.active : ""}`} onClick={() => setItemToShow('accessories')}>
             <img src="assets/icons/Clothing-Hat-icon.png" alt="hat icon" />
             {/* <img src="assets/icons/Clothing-Mittens-icon.png" alt="mittens icon" /> */}
-            <img src="assets/icons/Clothing-Scarf-icon.png" alt="scarf icon" />
+            {/* <img src="assets/icons/Clothing-Scarf-icon.png" alt="scarf icon" /> */}
           </div>
         </div>
         {itemToShow === 'tShirt' && <div className={`${styles.shelfContainer}`}>

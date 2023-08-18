@@ -1,6 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+var cors = require('cors');
+app.use(cors());
 
 const { connectDB, pool } = require("./db/database");
 
@@ -19,11 +21,25 @@ app.get("/xyz", (req, res)=> {
     })
 })
 app.post("/register_user", (req, res) => {
-    console.log("client data is", req.body.payload)
+    console.log("client data is", req.body.payload);
+    let data = req.body.payload;
+    pool.query(
+        `INSERT INTO users (username, password, email) VALUES ($1, $2, $3);`,
+        [data.firstname, data.lastname, data.email]
+      );
     return res.json({
         user: "user registered"
     })
 })
+
+// app.get("/users", () => {
+//     db.query(`
+//    SELECT * FROM users;   
+                
+//   `).then(({ rows }) => {
+//     response.json(rows[0].photo_data);
+//   });
+// })
 app.get("/abc", async (req, res) => {
   const user_id = 1;
   const randomString = "yyz";

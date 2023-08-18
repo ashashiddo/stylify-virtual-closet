@@ -10,6 +10,7 @@ const Shelf = ({itemList, canBeDeleted = true, canBeEdited = true}) => {
           <div className={styles.itemContent}>
             <p className={styles.itemDesc}>{item.description}</p>
             <p className={styles.itemDetails}><span>{item.color}</span><span>{item.brand}</span></p>
+            <p ><img className={styles.itemImg} src={item.url}></img></p>
           </div>
           <div className={styles.itemButtons}>
             <div className={styles.editButton}>
